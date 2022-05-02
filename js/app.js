@@ -35,6 +35,37 @@ function addPhraseToDisplay(arr) {
         console.log(arr);
 }
 
+    for (let i = 0; i < keys.length; i++) {
+        keys[i].addEventListener('click', () => {
+            keys[i].className = 'chosen';
+            keys[i].disabled = true;
+            const buttonLetter = keys[i].innerHTML;
+            console.log(buttonLetter + ' was clicked');
+            checkLetter(buttonLetter);
+        })
+        function checkLetter (arr) {
+            const letters = document.querySelectorAll('.letter'); 
+            const letterMatch = null;
+                    
+            for (let i = 0; i < letters.length; i++) {
+                if ( letters[i].innerHTML === arr.innerHTML) {
+                    letters[i].className = 'show';
+                    letterMatch = letters[i].innerHTML;
+                    return letterMatch;
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
+
+
+
+addPhraseToDisplay(phraseArray);
+
+
+//FIRST VERSION
+//
 // function checkLetter (arr) {
 //     const letters = document.querySelectorAll('.letter'); 
 //     const letterMatch = null;
@@ -59,35 +90,5 @@ function addPhraseToDisplay(arr) {
     //     })
     // }
 // }
-
-    for (let i = 0; i < keys.length; i++) {
-        keys[i].addEventListener('click', () => {
-            keys[i].className = 'chosen';
-            keys[i].disabled = true;
-            const testy = keys[i].innerHTML;
-            console.log(testy + ' was clicked');
-            checkLetter(testy);
-        })
-        function checkLetter (arr) {
-            const letters = document.querySelectorAll('.letter'); 
-            const letterMatch = null;
-            
-        
-            for (let i = 0; i < letters.length; i++) {
-                if ( letters[i].innerHTML === arr.innerHTML) {
-                    letters[i].className = 'show';
-                    letterMatch = letters[i].innerHTML;
-                    return letterMatch;
-                } else {
-                    return null;
-                }
-            }
-        }
-    }
-
-
-
-addPhraseToDisplay(phraseArray);
-console.log('test');
 
 
