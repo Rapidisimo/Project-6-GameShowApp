@@ -16,9 +16,9 @@
 - This function should randomly choose a phrase from the phrases array and split that phrase into a new array of characters. The function should then return the new character array.
 - Keep in mind that you’ll need to write this function so that it is reusable-- meaning that it can take any given array of strings (with no special characters) and return an array of characters. To do that, you’ll write the function so that it takes an array as a parameter:
 
-    function getRandomPhraseAsArray(arr){
-    //do stuff to any arr that is passed in 
-    } 
+        function getRandomPhraseAsArray(arr){
+        //do stuff to any arr that is passed in 
+        } 
 
 and to use the function, you’ll pass in the phrases array as an argument when you call the function:
 
@@ -29,14 +29,14 @@ and to use the function, you’ll pass in the phrases array as an argument when 
 - Create an addPhraseToDisplay function that loops through an array of characters. Inside the loop, for each character in the array, you’ll create a list item, put the character inside of the list item, and append that list item to the #phrase ul in your HTML. If the character in the array is a letter and not a space, the function should add the class “letter” to the list item.
 - You’ll need to write the addPhraseToDisplay function so that it can take any array of letters and add it to the display. To do that, the function will need to take an array as a parameter:
 
-    function addPhraseToDisplay(arr){
-    // do stuff any arr that is passed in, and add to `#phrase ul`
-    }
+        function addPhraseToDisplay(arr){
+        // do stuff any arr that is passed in, and add to `#phrase ul`
+        }
 
 - To use the function, you’ll get the value returned by the getRandomPhraseAsArray, save it to a variable, and pass it to addPhraseToDisplay as an argument:
 
-    const phraseArray = getRandomPhraseAsArray(phrases);
-    addPhrasetoDisplay(phraseArray); 
+        const phraseArray = getRandomPhraseAsArray(phrases);
+        addPhrasetoDisplay(phraseArray); 
 
 7. **Create a checkLetter function.**
 - The checkLetter function will be used inside of the event listener you’ll write in the next step.
