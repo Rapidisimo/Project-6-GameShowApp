@@ -2,10 +2,11 @@ const startGame = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
 const querty = document.getElementById('querty');
 const phrase = document.getElementById('phrase');
-const missed = 0;
+let missed = 0;
 const phrases = ['one', 'two', 'three', 'four test', 'five'];
 const phraseArray = getRandomPhraseAsArray(phrases);
 const keys = document.querySelectorAll('button');
+let letterMatch = null;
 
 
 startGame.addEventListener ('click', () => {
@@ -32,34 +33,32 @@ function addPhraseToDisplay(arr) {
         }
         }
         return arr;
-        console.log(arr);
 }
+addPhraseToDisplay(phraseArray);
+
 
     for (let i = 0; i < keys.length; i++) {
         keys[i].addEventListener('click', () => {
             keys[i].className = 'chosen';
             keys[i].disabled = true;
-            const buttonLetter = keys[i].innerHTML;
-            console.log(buttonLetter + ' was clicked');
+            let buttonLetter = keys[i].innerHTML;
             checkLetter(buttonLetter);
+            console.log(letterMatch);
         })
     }
 
-
-
-addPhraseToDisplay(phraseArray);
-
 function checkLetter (arr) {
     const letters = document.querySelectorAll('.letter'); 
-    let letterMatch = null;
             
     for (let i = 0; i < letters.length; i++) {
         if ( letters[i].innerHTML === arr) {
             letters[i].className = 'show';
-            letterMatch = letters[i].innerHTML;            
+            letterMatch = letters[i].innerHTML;
+        } else {
+            letterMatch = null;
         } 
     }
-    return letterMatch;
+    return arr
 }
 
 
