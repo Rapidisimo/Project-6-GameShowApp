@@ -43,7 +43,7 @@ addPhraseToDisplay(phraseArray);
             keys[i].disabled = true;
             let buttonLetter = keys[i].innerHTML;
             checkLetter(buttonLetter);
-            console.log(letterMatch);
+            console.log(letterMatch + ' = letterMatch');
         })
     }
 
