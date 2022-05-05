@@ -54,11 +54,13 @@ function checkLetter (arr) {
         if ( letters[i].innerHTML === arr) {
             letters[i].className = 'show';
             letterMatch = letters[i].innerHTML;
+            return letterMatch /* This returns the letter but doesn't work when theres more than one of the same letter*/
         } else {
-            letterMatch = null;
+            return letterMatch = null;
         } 
     }
-    return arr
+    // return letterMatch -> This gives me null when console.log(letterMatch) 
+    //                       in the click event...except in the last letter.
 }
 
 
