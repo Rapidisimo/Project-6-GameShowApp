@@ -8,7 +8,7 @@ const phraseArray = getRandomPhraseAsArray(phrases);
 const keys = document.querySelectorAll('button');
 let letterMatch = null;
 const hearts = document.querySelectorAll('.tries');
-
+const title = document.querySelector('.title');
 
 
 startGame.addEventListener ('click', () => {
@@ -37,6 +37,8 @@ function addPhraseToDisplay(arr) {
         return arr;
 }
 addPhraseToDisplay(phraseArray);
+let letter = document.querySelectorAll('.letter');
+
 
 qwerty.addEventListener('click', (event) => {
 
@@ -51,8 +53,8 @@ qwerty.addEventListener('click', (event) => {
             console.log('Ooops Missed!')
             badGuess(hearts);
         }
+        checkWin();
    }
-
 })
 
 function checkLetter (arr) {
@@ -73,5 +75,20 @@ function badGuess (arr) {
         if(i === score) {
             break
         }
+    }
+}
+
+function checkWin () {
+    let lettersShown = document.querySelectorAll('.show');
+    if ( lettersShown.length === letter.length ) {
+        console.log('YOU WIN');
+        overlay.className = 'win';
+        overlay.style.display = 'flex';
+        title.innerHTML = 'YOU WIN!';
+    } else if ( missed === 5 ) {
+        console.log('YOU LOSE');
+        overlay.className = 'lose';
+        overlay.style.display = 'flex';
+        title.innerHTML = 'YOU LOSE!';
     }
 }
