@@ -1,12 +1,14 @@
 const startGame = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
-const querty = document.getElementById('querty');
+const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 let missed = 0;
 const phrases = ['one', 'two', 'three', 'four test', 'five'];
 const phraseArray = getRandomPhraseAsArray(phrases);
 const keys = document.querySelectorAll('button');
 let letterMatch = null;
+const hearts = document.querySelectorAll('.tries');
+
 
 
 startGame.addEventListener ('click', () => {
@@ -36,31 +38,40 @@ function addPhraseToDisplay(arr) {
 }
 addPhraseToDisplay(phraseArray);
 
+qwerty.addEventListener('click', (event) => {
 
-    for (let i = 0; i < keys.length; i++) {
-        keys[i].addEventListener('click', () => {
-            keys[i].className = 'chosen';
-            keys[i].disabled = true;
-            let buttonLetter = keys[i].innerHTML;
-            checkLetter(buttonLetter);
-            console.log(letterMatch + ' = letterMatch');
-        })
-    }
+   if (event.target.tagName === 'BUTTON') {
+        event.target.className = 'chosen';
+        let buttonLetter = event.target.innerHTML;
+        checkLetter(buttonLetter);
+        if (letterMatch === buttonLetter) {
+            console.log('We have a match')
+        } else {
+            missed += 1;
+            console.log('Ooops Missed!')
+            badGuess(hearts);
+        }
+   }
+
+})
 
 function checkLetter (arr) {
     const letters = document.querySelectorAll('.letter'); 
-            
+
     for (let i = 0; i < letters.length; i++) {
         if ( letters[i].innerHTML === arr) {
             letters[i].className = 'show';
             letterMatch = letters[i].innerHTML;
-            return letterMatch /* This returns the letter but doesn't work when theres more than one of the same letter*/
-        } else {
-            return letterMatch = null;
         } 
-    }
-    // return letterMatch -> This gives me null when console.log(letterMatch) 
-    //                       in the click event...except in the last letter.
+    } return letterMatch
 }
 
-
+function badGuess (arr) {
+    let score = missed - 1;
+    for (let i = score; i < arr.length; i++ ) {
+        arr[i].innerHTML = '<img src="images/lostHeart.png" height="35px" width="30px">';
+        if(i === score) {
+            break
+        }
+    }
+}
