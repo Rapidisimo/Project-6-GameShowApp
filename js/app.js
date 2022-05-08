@@ -37,7 +37,6 @@ function addPhraseToDisplay(arr) {
         return arr;
 }
 addPhraseToDisplay(phraseArray);
-let letter = document.querySelectorAll('.letter');
 
 
 qwerty.addEventListener('click', (event) => {
@@ -62,7 +61,7 @@ function checkLetter (arr) {
 
     for (let i = 0; i < letters.length; i++) {
         if ( letters[i].innerHTML === arr) {
-            letters[i].className = 'show';
+            letters[i].className = 'letter show';
             letterMatch = letters[i].innerHTML;
         } 
     } return letterMatch
@@ -80,6 +79,8 @@ function badGuess (arr) {
 
 function checkWin () {
     let lettersShown = document.querySelectorAll('.show');
+    let letter = document.querySelectorAll('.letter');
+    setTimeout(function () {
     if ( lettersShown.length === letter.length ) {
         console.log('YOU WIN');
         overlay.className = 'win';
@@ -91,4 +92,6 @@ function checkWin () {
         overlay.style.display = 'flex';
         title.innerHTML = 'YOU LOSE!';
     }
+}, 990);
 }
+
