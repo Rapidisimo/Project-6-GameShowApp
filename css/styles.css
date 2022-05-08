@@ -27,6 +27,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  font-family: 'Open Sans', sans-serif;
 }
 
 li, ol, ul {
@@ -97,6 +98,10 @@ button {
   background-color: #76CE82;
 }
 
+.test {
+  transition: var(--transition);
+}
+
 /* Keyboard */
 
 .keyrow {
@@ -109,6 +114,14 @@ button {
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
+}
+.correctLetter {
+  border: 1.2px solid #76CE82;
+  transition: var(--transition);
+}
+.wrongLetter {
+  border: 1.2px solid #fe5f5f;
+  transition: var(--transition);
 }
 
 .btn__reset {

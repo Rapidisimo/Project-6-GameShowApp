@@ -11,9 +11,16 @@ const hearts = document.querySelectorAll('.tries');
 const title = document.querySelector('.title');
 
 
-startGame.addEventListener ('click', () => {
-    overlay.style.display = 'none';
+
+startGame.addEventListener ('click', (event) => {
+    if ( event.target.innerHTML === 'Start Game') {
+        overlay.style.display = 'none';
+    } else if ( event.target.innerHTML === 'Replay?') {
+        location.reload();
+    }
+    
 } )
+
 
 function getRandomPhraseAsArray (arr) {
     const randomP = Math.floor(Math.random() * arr.length );
@@ -46,9 +53,11 @@ qwerty.addEventListener('click', (event) => {
         let buttonLetter = event.target.innerHTML;
         checkLetter(buttonLetter);
         if (letterMatch === buttonLetter) {
+            event.target.className = 'chosen correctLetter';
             checkWin();
         } else {
             missed += 1;
+            event.target.className = 'chosen wrongLetter';
             badGuess(hearts);
             checkWin();
         }
@@ -84,10 +93,12 @@ function checkWin () {
         overlay.className = 'win';
         overlay.style.display = 'flex';
         title.innerHTML = 'YOU WIN!';
+        startGame.innerHTML = 'Replay?';
     } else if ( missed === 5 ) {
         overlay.className = 'lose';
         overlay.style.display = 'flex';
         title.innerHTML = 'YOU LOSE!';
+        startGame.innerHTML = 'Replay?';
     }
 }, 990);
 }
