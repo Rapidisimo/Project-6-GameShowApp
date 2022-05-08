@@ -11,7 +11,6 @@ const hearts = document.querySelectorAll('.tries');
 const title = document.querySelector('.title');
 
 
-
 startGame.addEventListener ('click', (event) => {
     if ( event.target.innerHTML === 'Start Game') {
         overlay.style.display = 'none';
@@ -20,7 +19,6 @@ startGame.addEventListener ('click', (event) => {
     }
     
 } )
-
 
 function getRandomPhraseAsArray (arr) {
     const randomP = Math.floor(Math.random() * arr.length );
