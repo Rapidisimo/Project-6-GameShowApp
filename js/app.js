@@ -3,7 +3,7 @@ const overlay = document.getElementById('overlay');
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 let missed = 0;
-const phrases = ['one', 'two', 'three', 'four test', 'five'];
+const phrases = ['blue sky', 'gentle breeze', 'morning mist', 'sunny day', 'cool night'];
 const phraseArray = getRandomPhraseAsArray(phrases);
 const keys = document.querySelectorAll('button');
 let letterMatch = null;
@@ -22,7 +22,7 @@ function getRandomPhraseAsArray (arr) {
 }
 
 function addPhraseToDisplay(arr) {
-    const list = document.querySelector('ul');
+    const list = document.querySelector('#phrase ul');
 
     for (let i = 0; i < arr.length; i++ ) {
         const item = document.createElement('li'); 
@@ -46,13 +46,12 @@ qwerty.addEventListener('click', (event) => {
         let buttonLetter = event.target.innerHTML;
         checkLetter(buttonLetter);
         if (letterMatch === buttonLetter) {
-            console.log('We have a match')
+            checkWin();
         } else {
             missed += 1;
-            console.log('Ooops Missed!')
             badGuess(hearts);
+            checkWin();
         }
-        checkWin();
    }
 })
 
@@ -82,12 +81,10 @@ function checkWin () {
     let letter = document.querySelectorAll('.letter');
     setTimeout(function () {
     if ( lettersShown.length === letter.length ) {
-        console.log('YOU WIN');
         overlay.className = 'win';
         overlay.style.display = 'flex';
         title.innerHTML = 'YOU WIN!';
     } else if ( missed === 5 ) {
-        console.log('YOU LOSE');
         overlay.className = 'lose';
         overlay.style.display = 'flex';
         title.innerHTML = 'YOU LOSE!';
