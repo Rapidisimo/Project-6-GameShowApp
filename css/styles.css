@@ -43,6 +43,16 @@ h2 {
   margin: 0;
 }
 
+h3 {
+  margin: 0;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  font-size: var(--font-size-medium);
+  color: var(--color-neutral);
+  margin: 0;
+}
+
+
 button {
   margin: 6px;
   border: 1px solid transparent;
