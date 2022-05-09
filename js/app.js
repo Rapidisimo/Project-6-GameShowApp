@@ -93,21 +93,33 @@ function badGuess (arr) {
 // Checks to see if you have won or lost the game by comparing the count of the initial set of letters to
 // the count of letters you have guessed correctly. It also changes the overlay screen to a win or lose version and the button text/behaviour.
 // I also added a delay when winning or losing so you can see the completed phrase(if you won).
+// Added call to disableButtons function before the delay takes place to no longer allow input.
 function checkWin () {
     let lettersShown = document.querySelectorAll('.show');
     let letter = document.querySelectorAll('.letter');
-    setTimeout(function () {
     if ( lettersShown.length === letter.length ) {
-        overlay.className = 'win';
-        overlay.style.display = 'flex';
-        title.innerHTML = 'YOU WIN!';
-        startGame.innerHTML = 'Replay?';
+        disableButtons();
+        setTimeout(function () {    
+            overlay.className = 'win';
+            overlay.style.display = 'flex';
+            title.innerHTML = 'YOU WIN!';
+            startGame.innerHTML = 'Replay?';
+        }, 990);
     } else if ( missed === 5 ) {
-        overlay.className = 'lose';
-        overlay.style.display = 'flex';
-        title.innerHTML = 'YOU LOSE!';
-        startGame.innerHTML = 'Replay?';
+        disableButtons();
+        setTimeout(function () {
+            overlay.className = 'lose';
+            overlay.style.display = 'flex';
+            title.innerHTML = 'YOU LOSE!';
+            startGame.innerHTML = 'Replay?';
+         }, 990);
     }
-}, 990);
 }
 
+//Disables all onscreen keyboard buttons after a game is won or lost.
+function disableButtons () {
+    let buttons = document.querySelectorAll('button');
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+    }
+}
