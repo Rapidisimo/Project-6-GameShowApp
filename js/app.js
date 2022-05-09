@@ -49,7 +49,7 @@ addPhraseToDisplay(phraseArray);
 //If they don't match, the missed counter is increased, the class is updated, the badGuess function is called to remove a heart and checkWin function is called to see if they lost.
 qwerty.addEventListener('click', (event) => {
 
-   if (event.target.tagName === 'BUTTON') {e
+   if (event.target.tagName === 'BUTTON') {
         event.target.className = 'chosen';
         event.target.disabled = true;
         let buttonLetter = event.target.innerHTML;
