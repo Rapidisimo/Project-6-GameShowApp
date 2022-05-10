@@ -78,7 +78,7 @@ function checkLetter (arr) {
     } return letterMatch
 }
 // Called by the keyboard event listener.
-// If the letter clicked wasn't a match then this function increases the missed count and then removes a heart from the board.
+// If the letter clicked wasn't a match then this function based on the missed count removes a heart from the board.
 function badGuess (arr) {
     let score = missed - 1;
     for (let i = score; i < arr.length; i++ ) {
