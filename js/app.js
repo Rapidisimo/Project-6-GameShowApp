@@ -4,7 +4,7 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 let missed = 0;
 const phrases = ['blue sky', 'gentle breeze', 'morning mist', 'sunny day', 'cool night'];
-const phraseArray = getRandomPhraseAsArray(phrases);
+let phraseArray = getRandomPhraseAsArray(phrases);
 const keys = document.querySelectorAll('button');
 let letterMatch = null;
 const hearts = document.querySelectorAll('.tries');
@@ -15,7 +15,8 @@ startGame.addEventListener ('click', (event) => {
     if ( event.target.innerHTML === 'Start Game') {
         overlay.style.display = 'none';
     } else if ( event.target.innerHTML === 'Replay?') {
-        location.reload();
+        overlay.style.display = 'none';
+        resetGame();
     }
 } )
 
@@ -28,7 +29,6 @@ function getRandomPhraseAsArray (arr) {
 // Creates list items bases on the resulting letter array. If it's a space it assigns space as a class if not then it gets assigned a letter class.
 function addPhraseToDisplay(arr) {
     const list = document.querySelector('#phrase ul');
-
     for (let i = 0; i < arr.length; i++ ) {
         const item = document.createElement('li'); 
         list.append(item)
@@ -41,6 +41,7 @@ function addPhraseToDisplay(arr) {
         }
         return arr;
 }
+
 //Runs the function to create/display the phrase to guess
 addPhraseToDisplay(phraseArray);
 
@@ -48,7 +49,6 @@ addPhraseToDisplay(phraseArray);
 //Sends the innerHTML of the button the the checkLetter function for comparison. If they are the same it's class is update and the function to check for a win is called.
 //If they don't match, the missed counter is increased, the class is updated, the badGuess function is called to remove a heart and checkWin function is called to see if they lost.
 qwerty.addEventListener('click', (event) => {
-
    if (event.target.tagName === 'BUTTON') {
         event.target.className = 'chosen';
         event.target.disabled = true;
@@ -70,7 +70,6 @@ qwerty.addEventListener('click', (event) => {
 // Checks to see if the letter of the button matches the letter in the li not being shown. If it does then a class is added to show it on the board.
 function checkLetter (arr) {
     const letters = document.querySelectorAll('.letter'); 
-
     for (let i = 0; i < letters.length; i++) {
         if ( letters[i].innerHTML === arr) {
             letters[i].className = 'letter show';
@@ -104,7 +103,7 @@ function checkWin () {
             overlay.style.display = 'flex';
             title.innerHTML = 'YOU WIN!';
             startGame.innerHTML = 'Replay?';
-        }, 990);
+        }, 800);
     } else if ( missed === 5 ) {
         disableButtons();
         setTimeout(function () {
@@ -112,7 +111,7 @@ function checkWin () {
             overlay.style.display = 'flex';
             title.innerHTML = 'YOU LOSE!';
             startGame.innerHTML = 'Replay?';
-         }, 990);
+         }, 800);
     }
 }
 
@@ -123,3 +122,27 @@ function disableButtons () {
         buttons[i].disabled = true;
     }
 }
+
+// RESET GAME after win or loss
+function resetGame () {
+    missed = 0;
+    phraseArray = ''; /*Removing the previous phrase*/
+    phraseArray = getRandomPhraseAsArray(phrases); /*Choosing a new phrase*/
+    // Remove list items of the last phrase from display
+    const removeLi = document.querySelectorAll('ul li');
+    for (let i = 0; i < removeLi.length; i++) {
+        removeLi[i].remove();
+    }
+    // Reset all buttons
+    let buttons = document.querySelectorAll('button');
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = false;
+        buttons[i].className = '';
+    }// Replenish Hearts
+    for (let i = 0; i < hearts.length; i++) {
+        hearts[i].innerHTML = '<img src="images/liveHeart.png" height="35px" width="30px">';    
+    }
+        //Add new phrase as li items to screen
+        addPhraseToDisplay(phraseArray);
+}
+
