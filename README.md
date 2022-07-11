@@ -2,7 +2,7 @@
 
 **Objective:** Create a word guessing game called "Wheel of Success" using JavaScript.
 
-➡️ [VIEW PROJECT:](https://rapidisimo.github.io/Project-6-GameShowApp/)
+➡️ [VIEW PROJECT](https://rapidisimo.github.io/Project-6-GameShowApp/)
 
 ## Overview
 Using Javascript, create an array of phrases and write functions to choose a random phrase from that array, split the phrase into letters, and put those letters onto the game board.
